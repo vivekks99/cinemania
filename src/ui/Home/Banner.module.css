@@ -1,0 +1,53 @@
+.heroBanner {
+    width: 100%;
+    height: 80vh;
+    background-color: var(--black);
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+.opacityLayer {
+    width: 100%;
+    height: 250px;
+    background: linear-gradient(
+        180deg,
+        rgba(4, 21, 45, 0) 0%,
+        #50555c 79.17%
+    );
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+.heroBannerContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    text-align: center;
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    
+}
+.title {
+    font-size: 50px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+.backdropImg {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0.8;
+    overflow: hidden;
+}
+.backdropImg img{
+    width: 100%;
+}
+.subTitle {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 40px;
+}

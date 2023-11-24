@@ -1,0 +1,44 @@
+.scroll-container{
+    background-color: #04152d;
+    color: #fff;
+}
+.scroll-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem;
+}
+.header-right{
+    display: flex;
+    flex-direction: column;
+}
+.scroll-title{
+    font-size: 2rem;
+}
+.see-more{
+    font-size: 1.1rem;
+    margin-top: 2rem;
+    text-align: right;
+}
+.see-more span{
+    cursor: pointer;
+}
+.cardsOverflow{
+    display: flex;
+    overflow: scroll;
+    gap: 16px;
+}
+.cardsOverflow::-webkit-scrollbar{
+    display: none;
+}
+
+@media only screen and (max-width:435px) {
+    .scroll-header{
+        padding: 0.5rem;
+    }
+}
+@media only screen and (max-width:345px) {
+    .scroll-title{
+        font-size: 1.5rem;
+    }
+}

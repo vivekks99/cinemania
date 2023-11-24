@@ -1,0 +1,143 @@
+.selectedContainer{
+    background-color: #04152d;
+    color: #d9d9d9;
+}
+.selectedContent{
+    display: flex;
+    padding: 4rem 2rem;
+}
+.left{
+    width: 40%;
+}
+.left img{
+    width: 70%;
+    border-radius: 2rem;
+}
+.right{
+    width: 60%;
+}
+.right span{
+    color: #fff;
+    font-weight: bolder;
+}
+.tagline{
+    color: gray;
+    font-style: italic;
+    margin-top: 1rem;
+    font-size: 1.1rem;
+}
+.overview{
+    font-size: 1.2rem;
+    margin-top: 1rem;
+}
+.overview p{
+    margin-top: 0.5rem;
+}
+.contentList{
+    margin-top: 1.5rem;
+    border-bottom: solid 1px #475360;
+    padding: 1.1rem;
+}
+.selectedForm{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.formInput{
+    display: flex;
+    padding: 2.5rem 1rem;
+}
+textarea{
+    margin: 1rem 2rem 0 2rem;
+    padding: 0.5rem;
+    border: none;
+    outline: none;
+    background-color: #bcbcbc;
+    width: 25em;
+    height: 5em;
+}
+.flexCol{
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+}
+.justifyEvenly{
+    justify-content: space-evenly;
+}
+.formBtn{
+    margin-bottom: 3rem;
+}
+.submitBtn{
+    background-color: #cf7910;
+    padding: 1rem 1.2rem;
+    color: #fff;
+    border: none;
+    outline: none;
+    border-radius: 0.7rem;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+.submitBtn:hover{
+    background-color: #8a5310;
+    transition: all 0.4s ease-out;
+}
+.comment{
+    padding: 1rem;
+}
+.commentContent{
+    background-color: #152352;
+    padding: 1rem;
+    border-radius: 1rem;
+    margin: 0.5rem 0;
+    text-align: justify;
+}
+.commentContent span{
+    color: gray;
+}
+.disabled{
+    background-color: #6c6c6c;
+}
+.disabled:hover{
+    background-color: #6c6c6c;
+    cursor: not-allowed;
+}
+.rated{
+    display: "flex";
+    align-items: "center";
+    gap: "16px";
+}
+
+@media only screen and (max-width:768px) {
+    .formInput{
+        flex-direction: column;
+        align-items: center;
+    }
+    textarea {
+        margin: 1rem 0 0 0;
+    }
+    .mb{
+        margin-bottom: 1rem;
+    }
+}
+@media only screen and (max-width:650px) {
+    .selectedContent{
+        flex-direction: column;
+        padding: 4rem 1rem;
+    }
+    .left{
+        width: 100%;
+    }
+    .left img{
+        width: 100%;
+        padding: 1rem;
+    }
+    .right{
+        width: 90%;
+    }
+}
+@media only screen and (max-width:425px) {
+    textarea{
+        width: 16em;
+        height: 10em;
+    }
+}

@@ -1,0 +1,66 @@
+.overlay__background {
+    background-color: rgba(0, 0, 0, 0.6);
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+    z-index: 9;
+}
+
+.overlay__container {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    z-index: 10;
+    padding: 30px;
+    width: 35%;
+    height: 35%;
+}
+
+.overlay__controls {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.overlay-cross{
+    color: #fff;
+    cursor: pointer;
+    position: absolute;
+    top: -45px;
+    right: -41px;
+    font-size: 1.4rem;
+}
+
+@media only screen and (max-width:1200px) {
+    .overlay__container{
+        width: 45%;
+    }
+}
+@media only screen and (max-width:880px) {
+    .overlay__container{
+        width: 60%;
+    }
+}
+@media only screen and (max-width:550px) {
+    .overlay__container{
+        width: 85%;
+    }
+    .overlay-cross{
+        right: 0px;
+    }    
+}
+@media only screen and (max-width:400px) {
+    .overlay__container{
+        width: 98%;
+    }
+    .overlay-cross{
+        right: 20px;
+    }    
+}

@@ -1,0 +1,105 @@
+.empty-container{
+    height: 80vh;
+    background-color: #04152d;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.favorites-container{
+    min-height: 80vh;
+    background-color: #04152d;
+    color: #fff;
+    padding: 2rem 0;
+}
+.favorites-item-container{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 2rem;
+    background-color: #102037;
+    border-radius: 2rem;
+    margin: 1rem;
+}
+.fav-img{
+    width: 15%;
+}
+.fav-img img{
+    width: 100%;
+    border-radius: 1rem;
+}
+.fav-img img:hover{
+    cursor: pointer;
+    opacity: 0.7;
+    transition: all 0.4s ease-out;
+}
+.movie-details{
+    display: flex;
+    flex-direction: column;
+    width: 45%;
+    padding: 0 1rem;
+}
+.movie-details .title{
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+}
+.imdb-rating{
+    margin-bottom: 2rem;
+}
+.user-rating{
+    margin-bottom: 2rem;
+}
+.user-comment{
+    display: flex;
+    flex-direction: column;
+    width: 35%;
+}
+.user-comment span{
+    color: gray;
+}
+.comment-content{
+    text-align: justify;
+}
+.delete-icon{
+    width: 5%;
+    text-align: right;
+}
+.delete-icon i:hover{
+    cursor: pointer;
+    color: #d60000;
+    transition: all 0.4s ease-out;
+}
+.comment-title{
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+    font-weight: bolder;
+}
+
+@media only screen and (max-width:500px) {
+    .fav-img{
+        width: 100%;
+    }
+    .movie-details{
+        width: 100%;
+        margin-top: 2rem;
+    }
+    .user-comment{
+        width: 100%;
+    }
+    .delete-icon{
+        width: 100%;
+        margin-top: 2rem;
+        text-align: center;
+        border: solid 2px #fff;
+        border-radius: 2rem;
+        padding: 1rem;
+        background-color: #d60000;
+        cursor: pointer;
+    }
+    .delete-icon:hover{
+        color: #d60000;
+        background-color: #fff;
+        border-color: #d60000;
+        transition: all 0.4s ease-out;
+    }
+}

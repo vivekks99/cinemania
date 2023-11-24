@@ -1,0 +1,45 @@
+.tabsContainer{
+    display: flex;
+    justify-content: right;
+}
+.switchingTabs {
+    height: 34px;
+    background-color: white;
+    border-radius: 20px;
+    padding: 2px;
+    width: fit-content;
+    margin: 2rem 1rem 0 0;
+}
+.tabItems {
+    display: flex;
+    align-items: center;
+    height: 30px;
+    position: relative;
+}
+.tabItem {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 75px;
+    color: black;
+    font-size: 14px;
+    position: relative;
+    z-index: 1;
+    cursor: pointer;
+    transition: color ease 0.3s;
+
+}
+.active {
+    color: white;
+    background-color: orange;
+    border-radius: 15px;
+}
+.movingBg {
+    height: 30px;
+    width: 100px;
+    border-radius: 15px;
+    position: absolute;
+    left: 0;
+    transition: left cubic-bezier(0.88, -0.35, 0.565, 1.35) 0.4s;
+}
