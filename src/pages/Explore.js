@@ -17,7 +17,7 @@ function Explore() {
   const {mediaType} = useParams();
 
   async function fetchNextPageData(){
-    const res = await fetchDataFromApi(`/discover/${mediaType}/?with_genres=${genreId}&page=${pageNum}&primary_release_year=${year}/`);
+    const res = await fetchDataFromApi(`/discover/${mediaType}?with_genres=${genreId}&page=${pageNum}&primary_release_year=${year}`);
     setMedia([...media, ...res.results]);
     setPageNum(p => p + 1);
   }
