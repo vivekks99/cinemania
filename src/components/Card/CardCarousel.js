@@ -7,13 +7,15 @@ function CardCarousel({item, category}) {
 
   const imgUrl = 'https://image.tmdb.org/t/p/original/' + item.poster_path;
 
+  const date = new Date(item.release_date);
+
   return (
     <div className={styles.movieCard} onClick={() => navigate(`/see-more/${category}/${item.id}`)}>
         <div className={styles.posterBlock}>
             <img className={styles.posterImg} src={imgUrl} alt="" />
         </div>
         <div className={styles.textBlock}>
-            <span className={styles.title}>{item.title || item.name}</span>
+            <span className={styles.title}>{item.title || item.name} {date.getFullYear() ? `(${date.getFullYear()})` : ''}</span>
         </div>
     </div>
   )

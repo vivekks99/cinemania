@@ -6,14 +6,14 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import { useParams } from 'react-router-dom';
 import { useFetchMedia } from '../hooks/useFetch';
 
-const years = Array.from({ length: 2023 - 1950 + 1 }, (_, index) => 2023 - index);
+const years = Array.from({ length: 2024 - 1950 + 1 }, (_, index) => 2024 - index);
 
 function Explore() {
   const [media, setMedia] = useState([]);
   const [pageNum, setPageNum] = useState(2);
   const [totalPages, setTotalPages] = useState(0);
   const [genreId, setGenreId] = useState();
-  const [year, setYear] = useState();
+  const [year, setYear] = useState(2024);
   const {mediaType} = useParams();
 
   async function fetchNextPageData(){

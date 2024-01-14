@@ -14,6 +14,7 @@ function Selected() {
     const [isLoading, setIsLoading] = useState(false);
     const [rating, setRating] = useState(0);
     const [comment, setComment] = useState('');
+    const [images, setImages] = useState();
 
     const [params] = useSearchParams();
     const category = params.get("category");
@@ -26,6 +27,8 @@ function Selected() {
     const isTvSeriesRated = savedTvSeries.find(i => i.id === Number(id));
 
     const imgUrl = 'https://image.tmdb.org/t/p/original/' + selected.poster_path;
+
+    const date = new Date(selected.release_date);
 
     function handleSubmit(e){
         e.preventDefault();
@@ -47,6 +50,17 @@ function Selected() {
         fetchMovies();
     }, [mediaType, category, id]);
 
+    useEffect(function () {
+        async function fetchGallery() {
+            setIsLoading(true);
+            const res = await fetchDataFromApi(`/${mediaType || category}/${id}/images`);
+            console.log(res)
+            setImages(res.backdrops);
+            setIsLoading(false);
+        }
+        fetchGallery();
+    }, [mediaType, category, id]);
+
     return (
         <>
             {isLoading ? <Loader /> :
@@ -56,7 +70,7 @@ function Selected() {
                         <img src={imgUrl} alt="" />
                     </div>
                     <div className={styles.right}>
-                        <h1>{selected.name || selected.title}</h1>
+                        <h1>{selected.name || selected.title} {date.getFullYear() ? `(${date.getFullYear()})` : ''}</h1>
                         <div className={styles.tagline}>{selected.tagline}</div>
                         {selected.overview && 
                         <div className={styles.overview}>
@@ -69,18 +83,31 @@ function Selected() {
                     </div>
                 </div>
                 <div>
-                <form className={styles.selectedForm} onSubmit={handleSubmit}>
-                    {isMovieRated || isTvSeriesRated ? <Rated isMovieRated={isMovieRated} isTvSeriesRated={isTvSeriesRated}  maxRating={10} color="#fcc419" size={24} /> : <>
-                    <div className={styles.formInput}>
-                        <div className={`${styles.flexCol} ${styles.justifyEvenly} ${styles.mb}`}>
-                            <span>Rate this {mediaType || category === "movie" ? "Movie" : "TV-Series"}</span>
-                            <StarRating maxRating={10} size={24} rating={rating} setRating={setRating} />
-                        </div>
-                        <div className={styles.flexCol}><span>Post Comments</span><textarea value={comment} onChange={(e) => setComment(e.target.value)}></textarea></div>
-                    </div>
-                    <div className={styles.formBtn}><button type="submit" disabled={rating === 0} className={`${styles.submitBtn} ${rating === 0 && styles.disabled}`}>Add to Favorites</button></div></>}
-                </form>
+                    <form className={styles.selectedForm} onSubmit={handleSubmit}>
+                        {
+                            isMovieRated || isTvSeriesRated ? <Rated isMovieRated={isMovieRated} isTvSeriesRated={isTvSeriesRated}  maxRating={10} color="#fcc419" size={24} /> 
+                        : 
+                        <>
+                            <div className={styles.formInput}>
+                                <div className={`${styles.flexCol} ${styles.justifyEvenly} ${styles.mb}`}>
+                                    <span>Rate this {mediaType || category === "movie" ? "Movie" : "TV-Series"}</span>
+                                    <StarRating maxRating={10} size={24} rating={rating} setRating={setRating} />
+                                </div>
+                                <div className={styles.flexCol}><span>Post Comments</span><textarea value={comment} onChange={(e) => setComment(e.target.value)}></textarea></div>
+                            </div>
+                            <div className={styles.formBtn}><button type="submit" disabled={rating === 0} className={`${styles.submitBtn} ${rating === 0 && styles.disabled}`}>Add to Favorites</button></div>
+                        </>}
+                    </form>
                 </div>
+                {images?.length > 0 &&
+                <div className={styles.gallery}>
+                    <div className={styles.title}>Gallery</div>
+                    <div className={styles.cards}>
+                            {images?.map(i => (
+                                <img src={'https://image.tmdb.org/t/p/original/' + i.file_path} alt="" key={i} />
+                            ))}
+                    </div>
+                </div>}
             </div>}
         </>
     )

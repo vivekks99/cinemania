@@ -9,6 +9,8 @@ function FavoriteItem({item}) {
 
   const imgUrl = 'https://image.tmdb.org/t/p/original/' + item.poster_path;
 
+  const date = new Date(item.release_date);
+
   function handleDelete(){
     if(item.mediaType === "movie") dispatch(deleteFavoriteMovie(item.id));
     else dispatch(deleteFavoriteTvSeries(item.id));
@@ -18,7 +20,7 @@ function FavoriteItem({item}) {
     <div className='favorites-item-container'>
         <div className='fav-img'><img src={imgUrl} alt="" onClick={() => navigate(`${item.id}?category=${item.mediaType}`)} /></div>
         <div className="movie-details">
-            <div className='title'>{item.title || item.name}</div>
+            <div className='title'>{item.title || item.name} {date.getFullYear() ? `(${date.getFullYear()})` : ''}</div>
             <div className="imdb-rating"><span>IMDB Rating: </span>{item.vote_average}/10</div>
             <div className="user-rating"><span>User Rating: </span>{item.userRating}/10</div>
         </div>

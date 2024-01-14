@@ -8,6 +8,8 @@ function Card({ item, category }) {
     if(item.poster_path === null) return;
     const imgUrl = 'https://image.tmdb.org/t/p/original/' + item.poster_path;
 
+    const date = new Date(item.release_date);
+
     return (
         <>
             <div className={styles.cards} onClick={() => navigate(`${item.id}?category=${category}`)}>
@@ -17,7 +19,7 @@ function Card({ item, category }) {
                     </div>
                 </div>
                 <div className={styles.cardContent}>
-                    <p className="title">{item.title || item.name}</p>
+                    <p className="title">{item.title || item.name} {date.getFullYear() ? `(${date.getFullYear()})` : ''}</p>
                 </div>
             </div>
         </>

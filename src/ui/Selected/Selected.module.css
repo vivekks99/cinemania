@@ -1,53 +1,65 @@
-.selectedContainer{
+.selectedContainer {
     background-color: #04152d;
     color: #d9d9d9;
 }
-.selectedContent{
+
+.selectedContent {
     display: flex;
     padding: 4rem 2rem;
 }
-.left{
+
+.left {
     width: 40%;
 }
-.left img{
+
+.left img {
     width: 70%;
     border-radius: 2rem;
 }
-.right{
+
+.right {
     width: 60%;
 }
-.right span{
+
+.right span {
     color: #fff;
     font-weight: bolder;
 }
-.tagline{
+
+.tagline {
     color: gray;
     font-style: italic;
     margin-top: 1rem;
     font-size: 1.1rem;
 }
-.overview{
+
+.overview {
     font-size: 1.2rem;
     margin-top: 1rem;
 }
-.overview p{
+
+.overview p {
     margin-top: 0.5rem;
 }
-.contentList{
+
+.contentList {
     margin-top: 1.5rem;
     border-bottom: solid 1px #475360;
     padding: 1.1rem;
 }
-.selectedForm{
+
+.selectedForm {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-.formInput{
+
+.formInput {
     display: flex;
     padding: 2.5rem 1rem;
 }
-textarea{
+
+textarea {
     margin: 1rem 2rem 0 2rem;
     padding: 0.5rem;
     border: none;
@@ -56,18 +68,22 @@ textarea{
     width: 25em;
     height: 5em;
 }
-.flexCol{
+
+.flexCol {
     display: flex;
     flex-direction: column;
     align-items: baseline;
 }
-.justifyEvenly{
+
+.justifyEvenly {
     justify-content: space-evenly;
 }
-.formBtn{
+
+.formBtn {
     margin-bottom: 3rem;
 }
-.submitBtn{
+
+.submitBtn {
     background-color: #cf7910;
     padding: 1rem 1.2rem;
     color: #fff;
@@ -77,67 +93,115 @@ textarea{
     font-size: 0.9rem;
     cursor: pointer;
 }
-.submitBtn:hover{
+
+.submitBtn:hover {
     background-color: #8a5310;
     transition: all 0.4s ease-out;
 }
-.comment{
+
+.comment {
     padding: 1rem;
+    max-width: 80%;
+    margin: auto;
 }
-.commentContent{
+
+.commentContent {
     background-color: #152352;
     padding: 1rem;
     border-radius: 1rem;
     margin: 0.5rem 0;
     text-align: justify;
 }
-.commentContent span{
+
+.commentContent span {
     color: gray;
 }
-.disabled{
+
+.disabled {
     background-color: #6c6c6c;
 }
-.disabled:hover{
+
+.disabled:hover {
     background-color: #6c6c6c;
     cursor: not-allowed;
 }
-.rated{
+
+.rated {
     display: "flex";
     align-items: "center";
     gap: "16px";
 }
 
 @media only screen and (max-width:768px) {
-    .formInput{
+    .formInput {
         flex-direction: column;
         align-items: center;
     }
+
     textarea {
         margin: 1rem 0 0 0;
     }
-    .mb{
+
+    .mb {
         margin-bottom: 1rem;
     }
 }
+
 @media only screen and (max-width:650px) {
-    .selectedContent{
+    .selectedContent {
         flex-direction: column;
         padding: 4rem 1rem;
     }
-    .left{
+
+    .left {
         width: 100%;
     }
-    .left img{
+
+    .left img {
         width: 100%;
         padding: 1rem;
     }
-    .right{
+
+    .right {
         width: 90%;
     }
 }
+
 @media only screen and (max-width:425px) {
-    textarea{
+    textarea {
         width: 16em;
         height: 10em;
+    }
+}
+
+.gallery .title {
+    font-size: 2rem;
+    font-weight: bolder;
+    margin: 3rem 0;
+    text-align: center;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    max-width: 80%;
+    margin: auto;
+    gap: 2rem;
+}
+
+.cards img {
+    width: 100%;
+    border-radius: 0.7rem;
+}
+
+@media only screen and (max-width:768px) {
+    .cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media only screen and (max-width:565px) {
+    .cards {
+        grid-template-columns: repeat(1, minmax(0, 1fr));
     }
 }
