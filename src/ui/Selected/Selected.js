@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { useParams, useSearchParams } from 'react-router-dom'
 import { fetchDataFromApi } from '../../utils/api';
 import Loader from '../../components/Loader/Loader';
@@ -12,9 +12,12 @@ function Selected() {
     const { mediaType, id } = useParams();
     const [selected, setSelected] = useState({});
     const [isLoading, setIsLoading] = useState(false);
+    const [isGalleryLoading, setIsGalleryLoading] = useState(false);
     const [rating, setRating] = useState(0);
     const [comment, setComment] = useState('');
     const [images, setImages] = useState();
+    const [comments, setComments] = useState();
+    const [isCommentLoading, setIsCommentLoading] = useState(false);
 
     const [params] = useSearchParams();
     const category = params.get("category");
@@ -43,22 +46,24 @@ function Selected() {
         async function fetchMovies() {
             setIsLoading(true);
             const res = await fetchDataFromApi(`/${mediaType || category}/${id}`);
-            console.log(res)
             setSelected(res);
             setIsLoading(false);
         }
         fetchMovies();
     }, [mediaType, category, id]);
 
-    useEffect(function () {
-        async function fetchGallery() {
-            setIsLoading(true);
+    const fetchGallery = useCallback(async function fetchGallery(){
+            setIsGalleryLoading(true);
             const res = await fetchDataFromApi(`/${mediaType || category}/${id}/images`);
-            console.log(res)
             setImages(res.backdrops);
-            setIsLoading(false);
-        }
-        fetchGallery();
+            setIsGalleryLoading(false);
+    }, [mediaType, category, id]);
+
+    const fetchComments = useCallback(async function fetchComments(){
+            setIsCommentLoading(true);
+            const res = await fetchDataFromApi(`/${mediaType || category}/${id}/reviews`);
+            setComments(res.results);
+            setIsCommentLoading(false);
     }, [mediaType, category, id]);
 
     return (
@@ -82,6 +87,19 @@ function Selected() {
                         <div className={styles.contentList}><span>IMDB Rating: </span>{selected.vote_average}/10</div>
                     </div>
                 </div>
+
+                <div className={styles.toggleBtns}>
+                    <div className={styles.expandBtn} onClick={() => fetchGallery()}><h2>View Gallery</h2></div>
+                </div>
+                {isGalleryLoading ? <Loader /> :  images?.length > 0 &&
+                <div className={styles.gallery}>
+                    <div className={styles.cards}>
+                            {images?.map(i => (
+                                <img src={'https://image.tmdb.org/t/p/original/' + i.file_path} alt="" key={i} />
+                            ))}
+                    </div>
+                </div>}
+
                 <div>
                     <form className={styles.selectedForm} onSubmit={handleSubmit}>
                         {
@@ -99,15 +117,29 @@ function Selected() {
                         </>}
                     </form>
                 </div>
-                {images?.length > 0 &&
-                <div className={styles.gallery}>
-                    <div className={styles.title}>Gallery</div>
-                    <div className={styles.cards}>
-                            {images?.map(i => (
-                                <img src={'https://image.tmdb.org/t/p/original/' + i.file_path} alt="" key={i} />
-                            ))}
-                    </div>
-                </div>}
+
+                <div className={styles.commentContainer}>
+                    <div className={styles.expandBtn} onClick={() => fetchComments()}>View Comments</div>
+                    {isCommentLoading ? <Loader /> : comments?.map(i => (
+                        <div className={styles.commentSection} key={i}>
+                            <div className={styles.header}>
+                                {i.author_details.avatar_path ? <img src={'https://image.tmdb.org/t/p/original/' + i.author_details.avatar_path} alt="" /> : <div className={styles.avatar}><i className="fas fa-user"></i></div>
+                                }
+                                <div className={styles.author}>
+                                    {i.author}
+                                </div>
+                                {i.author_details.rating && <div className={styles.rating}>
+                                    {i.author_details.rating}/10
+                                </div>}
+                            </div>
+                            <div className={styles.footer}>
+                                <div className={styles.content}>
+                                    {i.content}
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
             </div>}
         </>
     )
