@@ -12,8 +12,8 @@ function Explore() {
   const [media, setMedia] = useState([]);
   const [pageNum, setPageNum] = useState(2);
   const [totalPages, setTotalPages] = useState(0);
-  const [genreId, setGenreId] = useState();
-  const [year, setYear] = useState(2024);
+  const [genreId, setGenreId] = useState('');
+  const [year, setYear] = useState('');
   const {mediaType} = useParams();
 
   async function fetchNextPageData(){
@@ -34,7 +34,7 @@ function Explore() {
             <div className='genre flex-row-center'>
               <div className='filter-text'>By Genre</div> 
               <select onChange={(e) => setGenreId(e.target.value)}>
-                <option>All</option>
+                <option value="">All</option>
                 {mediaType === "tv" ? <option value="10759">Action & Adventure</option> : 
                   <><option value="28">Action</option>
                   <option value="12">Adventure</option></>
@@ -48,6 +48,7 @@ function Explore() {
             {mediaType === "movie" && <div className='year flex-row-center'>
               <div className='filter-text'>By Year</div>
               <select onChange={(e) => setYear(e.target.value)}>
+                <option value="">All</option>
                 {years.map(y => (
                   <option key={y} value={y}>{y}</option>
                 ))}

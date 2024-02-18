@@ -11,7 +11,6 @@ export function useFetchMedia(url, setMedia, setTotalPages){
         setMedia(res.results);
         setTotalPages(res.total_pages);
         setIsLoading(false);
-        console.log(res);
       }
       fetchMedia();
     }, [url, setMedia, setTotalPages]);
